@@ -20,6 +20,17 @@ var socketServer = socketIo.listen(webServer, {"log level":1});
 
 easyrtc.setOption("logLevel", "debug");
 
+//servers
+var myIceServers = [
+  {
+    "url":"turn:numb.viagenie.ca:3478?transport=tcp",
+    "username":"isu3ru@gmail.com",
+    "credential":"Isuru1988"
+  }
+];
+easyrtc.setOption("appIceServers", myIceServers);
+
+
 // Overriding the default easyrtcAuth listener, only so we can directly access its callback
 easyrtc.events.on("easyrtcAuth", function(socket, easyrtcid, msg, socketCallback, callback) {
     easyrtc.events.defaultListeners.easyrtcAuth(socket, easyrtcid, msg, socketCallback, function(err, connectionObj){
